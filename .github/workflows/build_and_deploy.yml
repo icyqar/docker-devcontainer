@@ -18,11 +18,12 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install podman
 
-    #- name: Set up Node.js
-    #  uses: actions/setup-node@v4
-    #  with:
-    #    node-version: 'latest'
+    - name: Set up Node.js
+      run: sudo apt-get -y install nodejs npm
       
+    - name: Install devcontainer
+      run: npm install -g devcontainer
+
     - name: Set environment from secrets
       run: |
         echo "REGISTRY_URL=${{ secrets.REGISTRY_URL }}" >> $GITHUB_ENV
@@ -31,10 +32,6 @@ jobs:
         echo "IMAGE_NAME=${{ secrets.IMAGE_NAME }}" >> $GITHUB_ENV
 
     - name: Build the devcontainer
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'latest'
-      run: npm install -g devcontainer
       run: |
         devcontainer build \
         --docker-path "$(which podman)" \
