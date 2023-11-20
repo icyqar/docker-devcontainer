@@ -1,0 +1,51 @@
+FROM docker.io/debian:latest
+
+# Variables recommended for Debian Container image
+# Recommended below
+# github.com/phusion/baseimage-docker/issues/319#issuecomment-1066174043
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NOWARNINGS="yes"
+
+# Update the OS
+RUN apt-get update > /dev/null
+
+# Install nodejs & npm
+RUN apt-get install nodejs -y > /dev/null
+RUN apt-get install npm -y > /dev/null
+
+# Install Git 
+RUN apt-get install git -y > /dev/null
+
+# Install sudo 
+RUN apt-get install sudo -y > /dev/null
+
+# Install the CLI to build devcontainers
+RUN npm install -g @devcontainers/cli
+
+# Name of the user within the container
+ENV USER devcontainer
+
+# Create a user account for python 3 development
+# --home Specifies the user's home directory 
+# --shell Specifies the shell that will assigned to the user on login 
+# --disabled-password Don't assign a password when creating a user
+# --gecos Skip the questionnaire.
+RUN adduser \
+--home "/home/${USER}" \
+--shell "/bin/bash" \
+--disabled-password \
+--gecos "" \
+"${USER}" > /dev/null
+
+# Set a password for the user
+RUN echo "${USER}:devcontainer" | chpasswd
+
+# Add the user to the sudo group
+RUN adduser "${USER}" sudo > /dev/null
+
+# Switch to the new user 
+USER "${USER}"
+WORKDIR "/home/${USER}"
+
+# Add the user's bin directory to the PATH
+ENV PATH="${PATH}:/home/${USER}/.local/bin"

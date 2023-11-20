@@ -1,0 +1,75 @@
+{
+	// Name of the container
+	"name": "Container Development",
+
+	// Use the local Containerfile
+	"build": {
+		"dockerfile": "Containerfile"
+	},
+	// Run the command to execute startup commands
+	"customizations": {
+		"vscode": {
+			//Settings for VSCode
+			"settings": {
+				// Set the default maximum timeout of lambda functions to 10 seconds
+				"aws.samcli.lambdaTimeout": 10000,
+
+				// Needed for ESLint to work correctly in monorepos with multiple eslint configs
+				"eslint.workingDirectories": [{ "mode": "auto" }],
+
+				// Disable VSCode minimap
+				"editor.minimap.enabled": false,
+
+				//Use bash as the default shell on Linux
+				"terminal.integrated.defaultProfile.linux": "bash",
+
+				// HIde files ignored by git
+				"explorer.excludeGitIgnore": true,
+
+				// Uses all ancestor .gitignore files
+				"search.useParentIgnoreFiles": true,
+
+				// Enable word wrapping
+				"editor.wordWrap": "on",
+
+				//Tell prettier to indent using tabs
+				"prettier.useTabs": true,
+
+				// Format source files on save
+				"editor.formatOnSave": true,
+
+				// Disable telemetry for VSCode
+				"telemetry.telemetryLevel": "off",
+
+				// Disable telemtry for AWS Toolkit
+				"aws.telemetry": false,
+
+				// JSON Language Settings
+				"[json][jsonc]": {
+					// Use prettier to format JSON files
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				}
+			},
+			"extensions": [
+				// AWS Toolkit include's Amazon alternative to Copilot which is free
+				"AmazonWebServices.aws-toolkit-vscode",
+				// Github Copilot for AI assisted development
+				"Github.copilot",
+				// dotenv(".env") language support
+				"mikestead.dotenv",
+				// Live Share Extension to share code with others
+				"ms-vsliveshare.vsliveshare",
+				//Live Preview Extension to preview HTML files within VSCode
+				"ms-vscode.live-server",
+				// Prettier Extension to format JSON files
+				"esbenp.prettier-vscode",
+				// Indent rainbow helps visualize indentation
+				"oderwat.indent-rainbow",
+				// Needed to enable TOML support in VSCode
+				"tamasfe.even-better-toml",
+				// Rainbow CSV to colorize CSV files
+				"mechatroner.rainbow-csv"
+			]
+		}
+	}
+}
