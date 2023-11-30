@@ -45,7 +45,7 @@ jobs:
         devcontainer build \
           --docker-path "$(which podman)" \
           --workspace-folder . \
-          --image-name "${IMAGE_NAME}"
+          --image-name "${IMAGE_NAME}" \
           --push true
         
     #- name: Push to container registry
