@@ -47,7 +47,7 @@ jobs:
       run: |
         devcontainer build \
           --workspace-folder . \
-          --image-name "${IMAGE_NAME}" \
+          --image-name "${REGISTRY_URL}/${REGISTRY_USERNAME}/${IMAGE_NAME}" \
           --push
       env:
         DOCKER_BUILDKIT: 1
