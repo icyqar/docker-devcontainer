@@ -28,9 +28,9 @@ jobs:
     - name: Log in to container registry
       run: |
         echo "${REGISTRY_PASSWORD}" | podman login \
-        --username "${REGISTRY_USERNAME}" \
-        --password-stdin \
-        "${REGISTRY_URL}"
+          --username "${REGISTRY_USERNAME}" \
+          --password-stdin \
+          "${REGISTRY_URL}"
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -43,12 +43,12 @@ jobs:
     - name: Build the devcontainer
       run: |
         devcontainer build \
-        --docker-path "$(which podman)" \
-        --workspace-folder . \
-        --image-name "${IMAGE_NAME}"
+          --docker-path "$(which podman)" \
+          --workspace-folder . \
+          --image-name "${IMAGE_NAME}"
         
     - name: Push to container registry
       run: |
         podman push \
-        "localhost/${IMAGE_NAME}:latest" \
-        "${REGISTRY_URL}/${REGISTRY_USERNAME}/${IMAGE_NAME}:latest"
+          "localhost/${IMAGE_NAME}:latest" \
+          "${REGISTRY_URL}/${REGISTRY_USERNAME}/${IMAGE_NAME}:latest"
