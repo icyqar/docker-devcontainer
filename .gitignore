@@ -1,0 +1,10 @@
+# Ignore IDE files
+/.idea/
+/.vscode/
+
+# Ignore files named '.DS_Store'
+# This is a Mac OS X system file
+/.DS_Store/
+
+# Exclude any .env files
+.env*
