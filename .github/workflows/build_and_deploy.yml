@@ -46,7 +46,7 @@ jobs:
           --docker-path "$(which podman)" \
           --workspace-folder . \
           --image-name "${IMAGE_NAME}" \
-          --push true
+          --push
         
     #- name: Push to container registry
     #  run: |
