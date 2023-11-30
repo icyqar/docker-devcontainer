@@ -15,10 +15,10 @@ jobs:
    
     - name: Set environment from secrets
       run: |
-        echo "REGISTRY_URL=${{ secrets.REGISTRY_URL }}" >> $GITHUB_ENV
-        echo "REGISTRY_USERNAME=${{ secrets.REGISTRY_USERNAME }}" >> $GITHUB_ENV
+        echo "REGISTRY_URL=${{ REGISTRY_URL }}" >> $GITHUB_ENV
+        echo "REGISTRY_USERNAME=${{ REGISTRY_USERNAME }}" >> $GITHUB_ENV
         echo "REGISTRY_PASSWORD=${{ secrets.REGISTRY_PASSWORD }}" >> $GITHUB_ENV
-        echo "IMAGE_NAME=${{ secrets.IMAGE_NAME }}" >> $GITHUB_ENV
+        echo "IMAGE_NAME=${{ IMAGE_NAME }}" >> $GITHUB_ENV
 
     - name: Install Podman
       run: |
